@@ -5,7 +5,7 @@ import com.aryan.model.User;
 import com.aryan.repository.UserRepo;
 import com.aryan.request.LoginRequest;
 import com.aryan.response.AuthResponse;
-import com.aryan.service.CustomUserDetailsImpl;
+import com.aryan.service.Implementation.CustomUserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

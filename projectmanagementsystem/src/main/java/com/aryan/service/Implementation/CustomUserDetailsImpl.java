@@ -1,4 +1,4 @@
-package com.aryan.service;
+package com.aryan.service.Implementation;
 
 import com.aryan.model.User;
 import com.aryan.repository.UserRepo;
