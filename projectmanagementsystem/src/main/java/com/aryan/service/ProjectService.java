@@ -1,13 +1,11 @@
 package com.aryan.service;
 
-import com.aryan.model.Chat;
-import com.aryan.model.Project;
-import com.aryan.model.User;
-import org.springframework.stereotype.Service;
+import com.aryan.model.entity.Chat;
+import com.aryan.model.entity.Project;
+import com.aryan.model.entity.User;
 
 import java.util.List;
 
-@Service
 public interface ProjectService {
 
     Project createProject(Project project, User user) throws Exception;

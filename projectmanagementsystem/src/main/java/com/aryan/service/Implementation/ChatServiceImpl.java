@@ -1,6 +1,6 @@
 package com.aryan.service.Implementation;
 
-import com.aryan.model.Chat;
+import com.aryan.model.entity.Chat;
 import com.aryan.repository.ChatRepo;
 import com.aryan.service.ChatService;
 

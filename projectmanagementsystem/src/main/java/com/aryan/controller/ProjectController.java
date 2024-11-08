@@ -1,9 +1,12 @@
 package com.aryan.controller;
 
-import com.aryan.model.Chat;
-import com.aryan.model.Project;
-import com.aryan.model.User;
+import com.aryan.model.entity.Chat;
+import com.aryan.model.entity.Invitation;
+import com.aryan.model.entity.Project;
+import com.aryan.model.entity.User;
+import com.aryan.request.InvitationRequest;
 import com.aryan.response.ApiResponse;
+import com.aryan.service.InvitationService;
 import com.aryan.service.ProjectService;
 import com.aryan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class ProjectController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private InvitationService invitationService;
 
     @GetMapping
     public ResponseEntity<List<Project>>getProjects(
@@ -112,6 +118,34 @@ public class ProjectController {
         User user = userService.findUserByJwt(jwt);
         Chat chat = projectService.getChatByProjectId(projectId);
         return new ResponseEntity<>(chat, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<ApiResponse>inviteProject(
+
+            @RequestBody InvitationRequest req,
+            @RequestHeader("Authorization") String jwt,
+            @RequestBody Project project
+    ) throws Exception {
+
+        User user = userService.findUserByJwt(jwt);
+        invitationService.sendInvitation(req.getEmail(), req.getProjectId());
+        ApiResponse res = new ApiResponse("User Invitation Sent!");
+        return new ResponseEntity<>(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/accept_invitation")
+    public ResponseEntity<Invitation>acceptInviteProject(
+
+            @RequestParam String token,
+            @RequestHeader("Authorization") String jwt,
+            @RequestBody Project project
+    ) throws Exception {
+
+        User user = userService.findUserByJwt(jwt);
+        Invitation invitation = invitationService.acceptInvitation(token, user.getId());
+        projectService.addUserToProject(invitation.getProjectId(), user.getId());
+        return new ResponseEntity<>(invitation, HttpStatus.ACCEPTED);
     }
 
 }

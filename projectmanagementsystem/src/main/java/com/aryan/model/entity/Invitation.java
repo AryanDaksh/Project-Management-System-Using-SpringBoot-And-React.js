@@ -1,4 +1,4 @@
-package com.aryan.model;
+package com.aryan.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

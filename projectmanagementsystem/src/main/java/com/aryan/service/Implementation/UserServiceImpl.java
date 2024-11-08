@@ -1,7 +1,7 @@
 package com.aryan.service.Implementation;
 
 import com.aryan.config.JwtProvider;
-import com.aryan.model.User;
+import com.aryan.model.entity.User;
 import com.aryan.repository.UserRepo;
 import com.aryan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

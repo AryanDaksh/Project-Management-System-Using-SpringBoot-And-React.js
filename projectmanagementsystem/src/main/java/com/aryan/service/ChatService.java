@@ -1,9 +1,7 @@
 package com.aryan.service;
 
-import com.aryan.model.Chat;
-import org.springframework.stereotype.Service;
+import com.aryan.model.entity.Chat;
 
-@Service
 public interface ChatService {
 
     Chat createChat(Chat chat);

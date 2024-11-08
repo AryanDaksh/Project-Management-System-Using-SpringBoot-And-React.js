@@ -1,4 +1,4 @@
-package com.aryan.model;
+package com.aryan.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Message {
+@NoArgsConstructor
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,12 +19,12 @@ public class Message {
 
     private String content;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createDateTime;
 
     @ManyToOne
-    private Chat chat;
+    private User user;
 
     @ManyToOne
-    private User sender;
+    private Issue issue;
 
 }

@@ -1,6 +1,6 @@
 package com.aryan.repository;
 
-import com.aryan.model.User;
+import com.aryan.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

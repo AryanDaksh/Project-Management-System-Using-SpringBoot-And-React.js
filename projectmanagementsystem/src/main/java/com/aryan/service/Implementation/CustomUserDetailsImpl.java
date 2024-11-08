@@ -1,6 +1,6 @@
 package com.aryan.service.Implementation;
 
-import com.aryan.model.User;
+import com.aryan.model.entity.User;
 import com.aryan.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

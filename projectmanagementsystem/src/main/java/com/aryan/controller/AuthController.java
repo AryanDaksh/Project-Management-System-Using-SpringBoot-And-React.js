@@ -1,7 +1,7 @@
 package com.aryan.controller;
 
 import com.aryan.config.JwtProvider;
-import com.aryan.model.User;
+import com.aryan.model.entity.User;
 import com.aryan.repository.UserRepo;
 import com.aryan.request.LoginRequest;
 import com.aryan.response.AuthResponse;

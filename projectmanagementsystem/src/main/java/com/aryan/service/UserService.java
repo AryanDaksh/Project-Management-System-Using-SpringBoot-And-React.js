@@ -1,9 +1,7 @@
 package com.aryan.service;
 
-import com.aryan.model.User;
-import org.springframework.stereotype.Service;
+import com.aryan.model.entity.User;
 
-@Service
 public interface UserService {
     User findUserByJwt(String jwt) throws Exception;
 
