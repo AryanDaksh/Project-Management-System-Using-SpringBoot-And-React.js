@@ -53,7 +53,7 @@ public class CommentServiceImpl implements CommentService {
 
         issue.getComments().add(savedComment);
 
-        return null;
+        return savedComment;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findCommentsByIssueId(Long issueId) {
-        return List.of();
+    public List<Comment> findByIssueId(Long issueId) {
+        return commentRepo.findByIssueId(issueId);
     }
 }
