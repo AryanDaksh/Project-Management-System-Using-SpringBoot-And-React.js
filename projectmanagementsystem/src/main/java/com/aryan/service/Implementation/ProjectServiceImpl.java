@@ -72,11 +72,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void deleteProject(Long projectId, Long userId) throws Exception {
+    public Project deleteProject(Long projectId, Long userId) throws Exception {
         getProjectById(projectId);
         userService.findUserById(userId);
         projectRepo.deleteById(projectId);
 
+        return null;
     }
 
     @Override
