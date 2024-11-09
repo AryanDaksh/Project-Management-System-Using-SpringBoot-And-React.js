@@ -34,7 +34,7 @@ public class CommentController {
 
     }
 
-    @DeleteMapping("{/commentId}")
+    @DeleteMapping("{commentId}")
     public ResponseEntity<ApiResponse> deleteComment(
             @PathVariable Long commentId,
             @RequestHeader("Authorizartion") String jwt) throws Exception {

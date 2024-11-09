@@ -22,7 +22,7 @@ public class Issue {
 
     private String status;
 
-    private long projectId;
+    private long projectID;
 
     private String priority;
 

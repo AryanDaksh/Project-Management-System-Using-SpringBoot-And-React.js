@@ -54,7 +54,7 @@ public class ProjectController {
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Project>createProject(
 
             @PathVariable long projectId,
@@ -120,7 +120,7 @@ public class ProjectController {
         return new ResponseEntity<>(chat, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/invite")
     public ResponseEntity<ApiResponse>inviteProject(
 
             @RequestBody InvitationRequest req,

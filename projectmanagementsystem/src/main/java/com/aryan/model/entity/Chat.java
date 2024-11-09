@@ -20,7 +20,7 @@ public class Chat {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "project")
+    @OneToOne
     private Project project;
 
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
