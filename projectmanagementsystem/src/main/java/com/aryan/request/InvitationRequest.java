@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class LoginRequest {
+public class InvitationRequest {
+    private long projectId;
     private String email;
-    private String password;
+
+
 }

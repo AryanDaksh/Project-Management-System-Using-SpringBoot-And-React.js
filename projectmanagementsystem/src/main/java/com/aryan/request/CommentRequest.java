@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-public class LoginRequest {
-    private String email;
-    private String password;
+public class CommentRequest {
+
+    private Long issueId;
+    private String content;
 }

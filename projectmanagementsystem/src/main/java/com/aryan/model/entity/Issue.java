@@ -1,4 +1,4 @@
-package com.aryan.model;
+package com.aryan.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -22,7 +22,7 @@ public class Issue {
 
     private String status;
 
-    private long projectId;
+    private long projectID;
 
     private String priority;
 
