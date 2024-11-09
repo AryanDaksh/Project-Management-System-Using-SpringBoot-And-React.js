@@ -83,9 +83,9 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public Issue updateIssue(Issue issueId, String status) throws Exception {
-        Issue issue = getIssueById(issueId.getId());
-        issue.setStatus(status);
-        return issueRepo.save(issue);
+    public Issue updateStatus(Long issueId, String status) throws Exception {
+        Issue issue = getIssueById(issueId); // reuse existing method to fetch the issue
+        issue.setStatus(status); // update the status
+        return issueRepo.save(issue); // save and return the updated issue
     }
 }
