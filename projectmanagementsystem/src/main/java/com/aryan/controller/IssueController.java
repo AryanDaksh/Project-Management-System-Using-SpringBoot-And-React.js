@@ -3,6 +3,7 @@ package com.aryan.controller;
 import com.aryan.model.entity.Issue;
 import com.aryan.model.entity.User;
 import com.aryan.model.dto.IssueDTO;
+import com.aryan.repository.IssueRepo;
 import com.aryan.request.IssueRequest;
 import com.aryan.response.ApiResponse;
 import com.aryan.service.IssueService;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/issue")
@@ -23,14 +25,17 @@ public class IssueController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private IssueRepo issueRepo;
+
     @GetMapping("/{issueId}")
     public ResponseEntity<Issue> getIssueById(@PathVariable Long issueId) throws Exception {
         return ResponseEntity.ok(issueService.getIssueById(issueId));
     }
 
     @GetMapping("/project/{projectId}")
-    public ResponseEntity<Issue> getIssueByProjectId(@PathVariable Long projectId) throws Exception {
-        return ResponseEntity.ok(issueService.getIssueById(projectId));
+    public ResponseEntity<List> getIssuesByProjectId(@PathVariable Long projectId) {
+        return ResponseEntity.ok(issueRepo.findByProjectId(projectId));
     }
 
     @PostMapping

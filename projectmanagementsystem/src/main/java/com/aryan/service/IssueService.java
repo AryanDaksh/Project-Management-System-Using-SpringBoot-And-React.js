@@ -11,11 +11,7 @@ public interface IssueService {
 
     Issue getIssueById(long issueId) throws Exception;
 
-    Optional<Issue> getIssue(long id) throws Exception;
-
-    Optional<Issue> getIssueByProjectId(long projectId) throws Exception;
-
-    List<Issue> getIssuesByProject() throws Exception;
+    List<Issue> getIssuesByProject(long projectId) throws Exception;
 
     Issue createIssue(IssueRequest issue, User user) throws Exception;
 

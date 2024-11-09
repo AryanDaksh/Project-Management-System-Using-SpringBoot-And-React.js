@@ -36,18 +36,8 @@ public class IssueServiceImpl implements IssueService {
     }
 
     @Override
-    public Optional<Issue> getIssue(long id) throws Exception {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Issue> getIssueByProjectId(long projectId) throws Exception {
-        return issueRepo.findById(projectId);
-    }
-
-    @Override
-    public List<Issue> getIssuesByProject() throws Exception {
-        return List.of();
+    public List<Issue> getIssuesByProject(long projectId) throws Exception {
+        return issueRepo.findByProjectId(projectId);
     }
 
     @Override
