@@ -1,35 +1,24 @@
 // noinspection JSValidateTypes
 
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, {useState} from 'react';
 import {Card, CardContent} from "@/components/ui/card.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import {ScrollArea} from "@radix-ui/react-scroll-area";
-import {RadioGroup} from "@radix-ui/react-radio-group";
-import {Label} from "@radix-ui/react-label";
-import {MixerHorizontalIcon} from "@radix-ui/react-icons";
-import {RadioGroupItem} from "@/components/ui/radio-group.jsx";
+import {MagnifyingGlassIcon, MixerHorizontalIcon} from "@radix-ui/react-icons";
+import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group.jsx";
+import {Input} from "@/components/ui/input.jsx";
+import ProjectCard from "@/pages/Projects/ProjectCard.jsx";
+import {ScrollArea} from "@/components/ui/scroll-area.jsx";
+import {Label} from "@/components/ui/label.jsx";
 
 const ProjectList = () => {
+    const [keyword, setKeyword] = useState("");
 
     const handleFilterChange = (section, value) => {
         console.log("value", value, section)
     }
-
-    const tags = [
-        "All",
-        "React",
-        "Next.js",
-        "Angular",
-        "Flask",
-        "Spring Boot",
-        "Node.js",
-        "Django",
-        "MySQL",
-        "MongoDB",
-        "Java",
-        "Python"
-    ];
+    const handleSearchChange=(e)=>{
+        setKeyword(e.target.value)
+    }
 
     return (
         <>
@@ -43,7 +32,7 @@ const ProjectList = () => {
                             </Button>
                         </div>
                         <CardContent className="mt-5">
-                            <ScrollArea className="space-y-7 h-[70vh] overflow-y-auto">
+                            <ScrollArea className="space-y-7 h-[70vh]">
                                 <div>
                                     <h1 className="pb-3 text-gray-400 border-b">Category</h1>
                                     <div className="pt-5">
@@ -88,10 +77,47 @@ const ProjectList = () => {
                         </CardContent>
                     </Card>
                 </section>
-                <section className='projectListSection w-full lg:w-[48rem]'></section>
+                <section className='projectListSection w-full lg:w-[48rem]'>
+                    <div className="flex gap-2 items-center pb-5 justify-between">
+
+                        <div className="relative p-0 w-full">
+                            <Input
+                                onChange={handleSearchChange}
+                            placeholder="Search Project"
+                            className="40% px-9"/>
+                            <MagnifyingGlassIcon className="absolute top-3 left-4"/>
+
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <div className="space-y-5 min-h-[74vh] text-left">
+                            {
+                                keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
+                                    [1,1,1,1].map((item) => <ProjectCard key={item}/>)
+                            }
+                        </div>
+                    </div>
+                </section>
             </div>
         </>
     )
 }
+
+export const tags = [
+    "All",
+    "React",
+    "Next.js",
+    "Angular",
+    "Flask",
+    "Spring Boot",
+    "Node.js",
+    "Django",
+    "MySQL",
+    "MongoDB",
+    "Java",
+    "Python"
+];
 
 export default ProjectList;
