@@ -23,17 +23,18 @@ const ProjectDetails = () => {
                 <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField control = {form.control}
                                name="email"
-                               render={({field}) => <FormItem>
-                                   <FormControl>
-                                       <Input{...field}
-                                             type="text"
-                                             className="border w-full border-gray-700 py-5 px-5"
-                                             placeholder="User E-mail"/>
-                                   </FormControl>
-                                   <FormMessage>
+                               render={({field}) => (
+                                   <FormItem>
+                                       <FormControl>
+                                           <Input{...field}
+                                                 type="text"
+                                                 className="border w-full border-gray-700 py-5 px-5"
+                                                 placeholder="User E-mail"/>
+                                       </FormControl>
+                                       <FormMessage>
 
-                                   </FormMessage>
-                               </FormItem>}
+                                       </FormMessage>
+                                   </FormItem>)}
                     />
 
                     <DialogClose>

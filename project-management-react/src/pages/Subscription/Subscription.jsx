@@ -3,31 +3,35 @@ import SubscriptionCard from "@/pages/Subscription/SubscriptionCard.jsx";
 
 
 const paidPlan = [
-    "Add unlimited project",
-    "Access to live chat",
-    "Add unlimited team member", "Advanced Reporting",
-    "Priority Support", "Customization Options",
-    "Integration Support",
-    "Advanced Security",
-    "Training and Resources",
-    "Access Control",
-    "Custom Workflows",
+    "Add unlimited projects",
+    "Access live chat support",
+    "Add unlimited team members",
+    "Advanced reporting features",
+    "Priority support",
+    "Customization options",
+    "Integration support",
+    "Advanced security measures",
+    "Training and resources",
+    "Access control management",
+    "Custom workflows",
 ];
 
 const annualPlan = [
-    "Add unlimited project", "Access to live chat",
-    "Add unlimited team member", "Advanced Reporting",
-    "Priority Support",
-    "Everything which montly plan has",
-]
+    "Add unlimited projects",
+    "Access live chat support",
+    "Add unlimited team members",
+    "Advanced reporting features",
+    "Priority support",
+    "Includes everything in the monthly plan",
+];
 
 const freePlan = [
-    "Add only 3 projects",
-    "Basic Task Management",
-    "Project Collaboration",
-    "Basic Reporting",
-    "Email Notifications",
-    "Basic Access Control",
+    "Add up to 3 projects",
+    "Basic task management",
+    "Project collaboration tools",
+    "Basic reporting features",
+    "Email notifications",
+    "Basic access control",
 ];
 
 const Subscription = () => {
