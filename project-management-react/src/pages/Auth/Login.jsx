@@ -2,14 +2,15 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form.jsx";
 import {Input} from "@/components/ui/input.jsx";
-import {DialogClose} from "@/components/ui/dialog.jsx";
 import {Button} from "@/components/ui/button.jsx";
 
-const ProjectDetails = () => {
+const Login = () => {
 
     const form = useForm({
         defaultValues: {
-            email: ""
+            email: "",
+            password: "",
+            fullname: "",
         }
     });
 
@@ -18,7 +19,8 @@ const ProjectDetails = () => {
     }
 
     return (
-        <div>
+        <div className="space-y-5">
+            <h1>Sign In</h1>
             <Form {...form}>
                 <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField control = {form.control}
@@ -27,9 +29,24 @@ const ProjectDetails = () => {
                                    <FormItem>
                                        <FormControl>
                                            <Input{...field}
-                                                 type="text"
+                                                 type="email"
                                                  className="border w-full border-gray-700 py-5 px-5"
-                                                 placeholder="User E-mail"/>
+                                                 placeholder="Email"/>
+                                       </FormControl>
+                                       <FormMessage>
+
+                                       </FormMessage>
+                                   </FormItem>)}
+                    />
+                    <FormField control = {form.control}
+                               name="password"
+                               render={({field}) => (
+                                   <FormItem>
+                                       <FormControl>
+                                           <Input{...field}
+                                                 type="password"
+                                                 className="border w-full border-gray-700 py-5 px-5"
+                                                 placeholder="Password"/>
                                        </FormControl>
                                        <FormMessage>
 
@@ -37,11 +54,9 @@ const ProjectDetails = () => {
                                    </FormItem>)}
                     />
 
-                    <DialogClose>
-                            <Button type="submit" className="w-full mt-5">
-                                Invite User
-                            </Button>
-                    </DialogClose>
+                    <Button type="submit" className="w-full mt-5">
+                        Register
+                    </Button>
 
                 </form>
             </Form>
@@ -49,4 +64,4 @@ const ProjectDetails = () => {
     )
 }
 
-export default ProjectDetails;
+export default Login;
