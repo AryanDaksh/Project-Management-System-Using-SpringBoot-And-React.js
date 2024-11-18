@@ -9,12 +9,16 @@ import {
 } from "@/components/ui/dropdown-menu.jsx";
 import {PersonIcon} from "@radix-ui/react-icons";
 import {Button} from "@/components/ui/button.jsx";
+import {useNavigate} from "react-router-dom";
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className="border-b py-4 px-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
-                <p className="cursor-pointer">Promana</p>
+                <p onClick={()=> navigate("/")} className="cursor-pointer">Promana</p>
 
                 <Dialog>
 
@@ -28,7 +32,7 @@ const Navbar = () => {
                     </DialogContent>
                 </Dialog>
 
-                <Button variant="ghost">Upgrade Plan</Button>
+                <Button onClick={()=> navigate("/upgrade_plan")} variant="ghost">Upgrade Plan</Button>
             </div>
 
             <div className="flex items-center gap-3">
@@ -43,9 +47,7 @@ const Navbar = () => {
                     </DropdownMenuContent>
                 </DropdownMenu>
                 <p>Aryan Daksh</p>
-
             </div>
-
         </div>
     )
 }
