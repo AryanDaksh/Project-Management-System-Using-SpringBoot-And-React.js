@@ -19,8 +19,8 @@ const Signup = () => {
     }
 
     return (
-        <div className="space-y-5">
-            <h1>Register</h1>
+        <div className="border py-3 px-5 rounded-lg space-y-5">
+            <h1 className="">Register</h1>
             <Form {...form}>
                 <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField control = {form.control}

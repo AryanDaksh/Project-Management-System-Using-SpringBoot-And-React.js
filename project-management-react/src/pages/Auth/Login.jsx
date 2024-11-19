@@ -19,7 +19,7 @@ const Login = () => {
     }
 
     return (
-        <div className="space-y-5">
+        <div className="border py-3 px-5 rounded-lg space-y-5">
             <h1>Sign In</h1>
             <Form {...form}>
                 <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
