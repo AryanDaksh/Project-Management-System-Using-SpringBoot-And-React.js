@@ -71,7 +71,7 @@ export const issueReducer = (state = initialState, action) => {
             }
 
         default:
-            state;
+            return state;
     }
 
 }

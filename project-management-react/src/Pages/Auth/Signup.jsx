@@ -3,18 +3,23 @@ import {useForm} from "react-hook-form";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form.jsx";
 import {Input} from "@/components/ui/input.jsx";
 import {Button} from "@/components/ui/button.jsx";
+import {useDispatch} from "react-redux";
+import {register} from "@/Redux/Auth/Action.js";
 
 const Signup = () => {
+
+    const dispatch = useDispatch();
 
     const form = useForm({
         defaultValues: {
             email: "",
             password: "",
-            fullname: "",
+            fullName: "",
         }
     });
 
     const onSubmit = (data) => {
+        dispatch(register(data));
         console.log("Create Project Data",data);
     }
 

@@ -50,7 +50,7 @@ export const commentReducer = (state = initialState, action) => {
             }
 
         default:
-            state;
+            return state;
     }
 }
 

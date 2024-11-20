@@ -42,7 +42,7 @@ export const subscriptionReducer = (state = initialState, action) => {
             };
 
         default:
-            state;
+            return state;
     }
 
 }
