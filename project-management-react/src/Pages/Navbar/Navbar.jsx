@@ -1,6 +1,6 @@
 import React from "react";
 import {Dialog, DialogContent, DialogHeader, DialogTrigger} from "@/components/ui/dialog.jsx";
-import CreateProjectForm from "@/pages/Projects/CreateProjectForm.jsx";
+import CreateProjectForm from "@/Pages/Projects/CreateProjectForm.jsx";
 import {
     DropdownMenu,
     DropdownMenuContent,

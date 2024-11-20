@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Signup from "@/pages/Auth/Signup.jsx";
-import Login from "@/pages/Auth/Login.jsx";
+import Signup from "@/Pages/Auth/Signup.jsx";
+import Login from "@/Pages/Auth/Login.jsx";
 import {Button} from "@/components/ui/button.jsx";
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProjectList from "@/pages/ProjectList/ProjectList.jsx";
+import ProjectList from "@/Pages/ProjectList/ProjectList.jsx";
 
 const Home = () => {
     return (

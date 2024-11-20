@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/button.jsx";
 import {MagnifyingGlassIcon, MixerHorizontalIcon} from "@radix-ui/react-icons";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group.jsx";
 import {Input} from "@/components/ui/input.jsx";
-import ProjectCard from "@/pages/Projects/ProjectCard.jsx";
+import ProjectCard from "@/Pages/Projects/ProjectCard.jsx";
 import {ScrollArea} from "@/components/ui/scroll-area.jsx";
 import {Label} from "@/components/ui/label.jsx";
 

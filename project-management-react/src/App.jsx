@@ -1,13 +1,13 @@
 // noinspection ConstantConditionalExpressionJS
 
 import './App.css'
-import Home from "@/pages/Home/Home.jsx";
-import Navbar from "@/pages/Navbar/Navbar.jsx";
+import Home from "@/Pages/Home/Home.jsx";
+import Navbar from "@/Pages/Navbar/Navbar.jsx";
 import { Routes, Route } from 'react-router-dom'
-import ProjectDetails from "@/pages/ProjectDetails/ProjectDetails.jsx";
-import IssueDetails from "@/pages/IssueDetails/IssueDetails.jsx";
-import Subscription from "@/pages/Subscription/Subscription.jsx";
-import Auth from "@/pages/Auth/Auth.jsx";
+import ProjectDetails from "@/Pages/ProjectDetails/ProjectDetails.jsx";
+import IssueDetails from "@/Pages/IssueDetails/IssueDetails.jsx";
+import Subscription from "@/Pages/Subscription/Subscription.jsx";
+import Auth from "@/Pages/Auth/Auth.jsx";
 
 function App() {
 

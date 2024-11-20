@@ -4,10 +4,10 @@ import {Avatar, AvatarFallback} from "@/components/ui/avatar.jsx";
 import {Badge} from "@/components/ui/badge.jsx";
 import {Dialog, DialogClose, DialogContent, DialogHeader, DialogTrigger} from "@/components/ui/dialog.jsx";
 import {PlusIcon} from "@radix-ui/react-icons";
-import InviteUserForm from "@/pages/ProjectDetails/InviteUserForm.jsx";
+import InviteUserForm from "@/Pages/ProjectDetails/InviteUserForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import IssueList from "@/pages/ProjectDetails/IssueList.jsx";
-import ChatBox from "@/pages/ProjectDetails/ChatBox.jsx";
+import IssueList from "@/Pages/ProjectDetails/IssueList.jsx";
+import ChatBox from "@/Pages/ProjectDetails/ChatBox.jsx";
 
 const ProjectDetails = () => {
 

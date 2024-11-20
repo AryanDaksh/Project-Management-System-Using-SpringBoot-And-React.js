@@ -1,5 +1,5 @@
 import React from 'react';
-import SubscriptionCard from "@/pages/Subscription/SubscriptionCard.jsx";
+import SubscriptionCard from "@/Pages/Subscription/SubscriptionCard.jsx";
 
 
 const paidPlan = [
