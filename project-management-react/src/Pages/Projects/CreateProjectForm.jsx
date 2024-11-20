@@ -5,7 +5,7 @@ import {DialogClose} from "@/components/ui/dialog.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.jsx";
 import {useForm} from "react-hook-form";
-import {tags} from "@/pages/ProjectList/ProjectList.jsx";
+import {tags} from "@/Pages/ProjectList/ProjectList.jsx";
 import {Cross1Icon} from "@radix-ui/react-icons";
 
 const CreateProjectForm = () => {

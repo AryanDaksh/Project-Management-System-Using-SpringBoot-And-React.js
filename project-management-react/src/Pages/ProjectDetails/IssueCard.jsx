@@ -9,7 +9,7 @@ import {
 import {Button} from "@/components/ui/button.jsx";
 import {DotsVerticalIcon, PersonIcon} from "@radix-ui/react-icons";
 import {Avatar, AvatarFallback} from "@/components/ui/avatar.jsx";
-import UserList from "@/pages/ProjectDetails/UserList.jsx";
+import UserList from "@/Pages/ProjectDetails/UserList.jsx";
 import {useNavigate} from "react-router-dom";
 
 const IssueCard = () => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog.jsx";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card.jsx";
-import IssueCard from "@/pages/ProjectDetails/IssueCard.jsx";
+import IssueCard from "@/Pages/ProjectDetails/IssueCard.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {PlusIcon} from "@radix-ui/react-icons";
-import CreateIssueForm from "@/pages/ProjectDetails/CreateIssueForm.jsx";
+import CreateIssueForm from "@/Pages/ProjectDetails/CreateIssueForm.jsx";
 
 const IssueList = ({title, status}) => {
     return (
