@@ -10,8 +10,16 @@ import {
 import { Button } from "@/components/ui/button.jsx";
 import {Badge} from "@/components/ui/badge.jsx";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {deleteProject} from "@/Redux/Project/Action.js";
 
-const ProjectCard = () => {
+const ProjectCard = ({item}) => {
+
+    const handleDelete = () => {
+        dispatch(deleteProject({projectId: item.id}));
+    }
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -24,11 +32,11 @@ const ProjectCard = () => {
                             onClick={() => navigate("/project/3")}
 
                             className="cursor-pointer font-bold text-lg">
-                            Create Ecommerce Project
+                            {item.projectName}
                         </h1>
                         <div className="flex items-center text-sm text-gray-400">
                             <DotFilledIcon className="mr-1"/>
-                            <p>Full-Stack</p>
+                            <p>{item.category}</p>
                         </div>
                     </div>
 
@@ -40,7 +48,7 @@ const ProjectCard = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuItem>Update</DropdownMenuItem>
-                            <DropdownMenuItem>Delete</DropdownMenuItem>
+                            <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
 
@@ -48,12 +56,12 @@ const ProjectCard = () => {
 
                 <div>
                     <p className="text-gray-500 text-sm mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+                        {item.description}
                     </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 items-center">
-                    {[1,1,1,1].map((item)=><Badge key={item} variant="outline">Full-Stack</Badge>)}
+                    {item.tags.map((tag)=><Badge key={item} variant="outline">{tag}</Badge>)}
                 </div>
             </div>
         </Card>

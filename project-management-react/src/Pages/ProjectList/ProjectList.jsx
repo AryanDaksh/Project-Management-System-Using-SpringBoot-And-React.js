@@ -9,9 +9,12 @@ import {Input} from "@/components/ui/input.jsx";
 import ProjectCard from "@/Pages/Projects/ProjectCard.jsx";
 import {ScrollArea} from "@/components/ui/scroll-area.jsx";
 import {Label} from "@/components/ui/label.jsx";
+import {useSelector} from "react-redux";
 
 const ProjectList = () => {
     const [keyword, setKeyword] = useState("");
+
+    const {project} = useSelector(Store => Store)
 
     const handleFilterChange = (section, value) => {
         console.log("value", value, section)
@@ -19,6 +22,7 @@ const ProjectList = () => {
     const handleSearchChange=(e)=>{
         setKeyword(e.target.value)
     }
+    console.log("Project Store", project)
 
     return (
         <>
@@ -35,32 +39,32 @@ const ProjectList = () => {
                             <ScrollArea className="space-y-7 h-[70vh]">
                                 <div>
                                     <h1 className="pb-3 text-gray-400 border-b">Category</h1>
-                                    <div className="pt-5">
+                                    <div className="pt-4">
                                         <RadioGroup
                                             className="space-y-3 pt-5"
                                             defaultValue="all"
                                             onValueChange={(value) => handleFilterChange("category", value)}>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Full-Stack' id='r1'/>
-                                                <Label htmlFor='r1'>Full-Stack</Label>
+                                                <RadioGroupItem value='All' id='r1'/>
+                                                <Label htmlFor='r1'>All</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Front-End' id='r2'/>
-                                                <Label htmlFor='r2'>Front-End</Label>
+                                                <RadioGroupItem value='Full-Stack' id='r2'/>
+                                                <Label htmlFor='r2'>Full-Stack</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Back-End' id='r3'/>
-                                                <Label htmlFor='r3'>Back-End</Label>
+                                                <RadioGroupItem value='Front-End' id='r3'/>
+                                                <Label htmlFor='r3'>Front-End</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Others' id='r4'/>
-                                                <Label htmlFor='r4'>Others</Label>
+                                                <RadioGroupItem value='Back-End' id='r4'/>
+                                                <Label htmlFor='r4'>Back-End</Label>
                                             </div>
                                         </RadioGroup>
                                     </div>
 
-                                    <h2 className="pb-3 text-gray-400 border-b">Tags</h2>
-                                    <div className="pt-9">
+                                    <h2 className="pt-10 pb-3 text-gray-400 border-b">Tags</h2>
+                                    <div className="pt-4">
                                         <RadioGroup
                                             className="space-y-3 pt-5"
                                             defaultValue="all"
@@ -95,7 +99,7 @@ const ProjectList = () => {
                         <div className="space-y-5 min-h-[74vh] text-left">
                             {
                                 keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
-                                    [1,1,1,1].map((item) => <ProjectCard key={item}/>)
+                                    project.projects.map((item) => <ProjectCard key={item.id} item={item}/>)
                             }
                         </div>
                     </div>

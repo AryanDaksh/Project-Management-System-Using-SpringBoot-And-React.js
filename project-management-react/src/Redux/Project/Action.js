@@ -17,7 +17,7 @@ export const fetchProjects = ({category, tags}) => async (dispatch) => {
     dispatch({type:FETCH_PROJECTS_REQUEST});
 
     try {
-        const {data} = await api.get("api/projects/", {params: {category, tags}});
+        const {data} = await api.get("/api/projects/", {params: {category, tags}});
         console.log("All Projects", data)
         dispatch({type:FETCH_PROJECTS_SUCCESS, projects: data})
 
@@ -43,7 +43,7 @@ export const createProjects = (projectData) => async (dispatch) => {
     dispatch({type:CREATE_PROJECT_REQUEST});
 
     try {
-        const {data} = await api.post("api/projects" + projectData);
+        const {data} = await api.post("api/projects/create", projectData);
         console.log("Create Project", data)
         dispatch({type:CREATE_PROJECT_SUCCESS, project: data})
 
@@ -69,7 +69,7 @@ export const deleteProject = ({projectId}) => async (dispatch) => {
     dispatch({type:DELETE_PROJECT_REQUEST});
 
     try {
-        const {data} = await api.delete("api/projects"+ projectId);
+        const {data} = await api.delete("api/projects/"+ projectId);
         console.log("Fetch Project By ID", data)
         dispatch({type:DELETE_PROJECT_SUCCESS, projectId})
 
