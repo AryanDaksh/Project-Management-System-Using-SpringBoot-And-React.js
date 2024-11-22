@@ -29,7 +29,7 @@ public class ProjectController {
     @Autowired
     private InvitationService invitationService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Project>>getProjects(
 
             @RequestParam(required = false)String category,
@@ -57,7 +57,6 @@ public class ProjectController {
     @PostMapping("/create")
     public ResponseEntity<Project>createProject(
 
-            @PathVariable long projectId,
             @RequestHeader("Authorization") String jwt,
             @RequestBody Project project
     ) throws Exception {

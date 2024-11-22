@@ -7,8 +7,13 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 import {useForm} from "react-hook-form";
 import {tags} from "@/Pages/ProjectList/ProjectList.jsx";
 import {Cross1Icon} from "@radix-ui/react-icons";
+import {useDispatch} from "react-redux";
+import login from "@/Pages/Auth/Login.jsx";
+import {createProjects} from "@/Redux/Project/Action.js";
 
 const CreateProjectForm = () => {
+
+    const dispatch = useDispatch();
 
     const handleTagsChange = (newValue) => {
         const currentTags = form.getValues("tags")
@@ -20,22 +25,23 @@ const CreateProjectForm = () => {
 
     const form = useForm({
         defaultValues: {
-            name: "",
+            projectName: "",
             description: "",
             category: "",
-            tags: ["Javascript", "CSS"]
+            tags: []
         }
     });
 
     const onSubmit = (data) => {
+        dispatch(createProjects(data));
         console.log("Create Project Data",data);
-    }
+    };
 
     return (
         <Form {...form}>
             <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField control = {form.control}
-                           name="name"
+                           name="projectName"
                            render={({field}) => <FormItem>
                                <FormControl>
                                    <Input{...field}

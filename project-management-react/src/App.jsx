@@ -7,14 +7,28 @@ import { Routes, Route } from 'react-router-dom'
 import ProjectDetails from "@/Pages/ProjectDetails/ProjectDetails.jsx";
 import IssueDetails from "@/Pages/IssueDetails/IssueDetails.jsx";
 import Subscription from "@/Pages/Subscription/Subscription.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {getUser} from "@/Redux/Auth/Action.js";
 import Auth from "@/Pages/Auth/Auth.jsx";
+import {fetchProjects} from "@/Redux/Project/Action.js";
 
 function App() {
+
+    const dispatch = useDispatch();
+    const {auth} = useSelector(Store=>Store)
+
+    useEffect(() => {
+        dispatch(fetchProjects({}))
+        dispatch(getUser())
+    },[auth.jwt])
+
+    console.log(auth);
 
     return (
         <>
             {
-                false ?
+                auth.users ?
                     <div>
                         <Navbar/>
                         <Routes>

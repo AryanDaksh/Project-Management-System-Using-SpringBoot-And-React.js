@@ -9,16 +9,39 @@ import {Input} from "@/components/ui/input.jsx";
 import ProjectCard from "@/Pages/Projects/ProjectCard.jsx";
 import {ScrollArea} from "@/components/ui/scroll-area.jsx";
 import {Label} from "@/components/ui/label.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProjects, searchProjects} from "@/Redux/Project/Action.js";
 
 const ProjectList = () => {
+
+    const dispatch = useDispatch();
+
     const [keyword, setKeyword] = useState("");
 
-    const handleFilterChange = (section, value) => {
-        console.log("value", value, section)
+    const {project} = useSelector(Store => Store)
+
+    const handleFilterCategory = (value) => {
+        if (value === "All") {
+            dispatch(fetchProjects({}));
+        }
+        else
+        dispatch(fetchProjects({category: value}));
     }
+
+    const handleFilterTag = (value) => {
+        if (value === "All") {
+            dispatch(fetchProjects({}));
+        }
+        else
+        dispatch(fetchProjects({tag: value}));
+    }
+
     const handleSearchChange=(e)=>{
         setKeyword(e.target.value)
+        dispatch(searchProjects(e.target.value))
     }
+
+    console.log("Project Store", project)
 
     return (
         <>
@@ -35,36 +58,36 @@ const ProjectList = () => {
                             <ScrollArea className="space-y-7 h-[70vh]">
                                 <div>
                                     <h1 className="pb-3 text-gray-400 border-b">Category</h1>
-                                    <div className="pt-5">
+                                    <div className="pt-4">
                                         <RadioGroup
                                             className="space-y-3 pt-5"
                                             defaultValue="all"
-                                            onValueChange={(value) => handleFilterChange("category", value)}>
+                                            onValueChange={(value) => handleFilterCategory(value)}>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Full-Stack' id='r1'/>
-                                                <Label htmlFor='r1'>Full-Stack</Label>
+                                                <RadioGroupItem value='All' id='r1'/>
+                                                <Label htmlFor='r1'>All</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Front-End' id='r2'/>
-                                                <Label htmlFor='r2'>Front-End</Label>
+                                                <RadioGroupItem value='Full-Stack' id='r2'/>
+                                                <Label htmlFor='r2'>Full-Stack</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Back-End' id='r3'/>
-                                                <Label htmlFor='r3'>Back-End</Label>
+                                                <RadioGroupItem value='Front-End' id='r3'/>
+                                                <Label htmlFor='r3'>Front-End</Label>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <RadioGroupItem value='Others' id='r4'/>
-                                                <Label htmlFor='r4'>Others</Label>
+                                                <RadioGroupItem value='Back-End' id='r4'/>
+                                                <Label htmlFor='r4'>Back-End</Label>
                                             </div>
                                         </RadioGroup>
                                     </div>
 
-                                    <h2 className="pb-3 text-gray-400 border-b">Tags</h2>
-                                    <div className="pt-9">
+                                    <h2 className="pt-10 pb-3 text-gray-400 border-b">Tags</h2>
+                                    <div className="pt-4">
                                         <RadioGroup
                                             className="space-y-3 pt-5"
                                             defaultValue="all"
-                                            onValueChange={(value) => handleFilterChange("tag", value)}>
+                                            onValueChange={(value) => handleFilterTag(value)}>
 
                                             {tags.map((item) => <div key={item} className="flex items-center gap-2">
                                                 <RadioGroupItem value={item} id={`r1-${item}`}/>
@@ -94,8 +117,9 @@ const ProjectList = () => {
                     <div>
                         <div className="space-y-5 min-h-[74vh] text-left">
                             {
-                                keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
-                                    [1,1,1,1].map((item) => <ProjectCard key={item}/>)
+                                keyword?
+                                project.searchProjects.map((item, index) => <ProjectCard item={item} key={item.id*index}/>):
+                                    project.projects.map((item) => <ProjectCard key={item.id} item={item}/>)
                             }
                         </div>
                     </div>

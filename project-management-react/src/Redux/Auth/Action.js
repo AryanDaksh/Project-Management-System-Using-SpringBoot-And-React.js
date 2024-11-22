@@ -1,5 +1,5 @@
+import api, {API_BASE_URL} from "@/Config/Api.js";
 import axios from "axios";
-import api from "@/Config/Api.js";
 
 export const register= userData => async (dispatch) => {
     dispatch({type:'REGISTER_REQUEST'});
@@ -32,23 +32,21 @@ export const login= userData => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-
 }
 
 export const getUser= () => async (dispatch) => {
     dispatch({type:'GET_USER_REQUEST'});
     try{
-        const {data} = await api.get(`/api/users/profile`,{
+        const {data} = await axios.get(`${API_BASE_URL}/api/users/profile`,{
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
             }
         });
-        if (data.jwt){
-            localStorage.setItem('jwt',data.jwt);
-            dispatch({type:'GET_USER_SUCCESS', payload:data});
-        }
 
-        console.log("Login Success", data)
+            dispatch({type:'GET_USER_SUCCESS', payload:data});
+
+
+        console.log("User Success", data)
 
     } catch (error) {
         console.log("error", error)

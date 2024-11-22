@@ -3,19 +3,23 @@ import {useForm} from "react-hook-form";
 import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form.jsx";
 import {Input} from "@/components/ui/input.jsx";
 import {Button} from "@/components/ui/button.jsx";
+import {useDispatch} from "react-redux";
+import {login} from "@/Redux/Auth/Action.js";
 
 const Login = () => {
+
+    const dispatch = useDispatch();
 
     const form = useForm({
         defaultValues: {
             email: "",
             password: "",
-            fullname: "",
         }
     });
 
     const onSubmit = (data) => {
-        console.log("Create Project Data",data);
+        dispatch(login(data));
+        console.log("Login Project Data",data);
     }
 
     return (
@@ -55,7 +59,7 @@ const Login = () => {
                     />
 
                     <Button type="submit" className="w-full mt-5">
-                        Register
+                        Login
                     </Button>
 
                 </form>
