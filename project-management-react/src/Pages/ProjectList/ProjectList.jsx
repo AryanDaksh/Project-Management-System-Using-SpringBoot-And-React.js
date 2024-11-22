@@ -9,9 +9,13 @@ import {Input} from "@/components/ui/input.jsx";
 import ProjectCard from "@/Pages/Projects/ProjectCard.jsx";
 import {ScrollArea} from "@/components/ui/scroll-area.jsx";
 import {Label} from "@/components/ui/label.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {searchProjects} from "@/Redux/Project/Action.js";
 
 const ProjectList = () => {
+
+    const dispatch = useDispatch();
+
     const [keyword, setKeyword] = useState("");
 
     const {project} = useSelector(Store => Store)
@@ -21,6 +25,7 @@ const ProjectList = () => {
     }
     const handleSearchChange=(e)=>{
         setKeyword(e.target.value)
+        dispatch(searchProjects(e.target.value))
     }
     console.log("Project Store", project)
 
@@ -98,7 +103,8 @@ const ProjectList = () => {
                     <div>
                         <div className="space-y-5 min-h-[74vh] text-left">
                             {
-                                keyword?[1,1,1].map((item) => <ProjectCard key={item}/>):
+                                keyword?
+                                project.searchProjects.map((item, index) => <ProjectCard item={item} key={item.id*index}/>):
                                     project.projects.map((item) => <ProjectCard key={item.id} item={item}/>)
                             }
                         </div>

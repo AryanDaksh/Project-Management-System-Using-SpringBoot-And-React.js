@@ -1,5 +1,4 @@
 import api from "@/Config/Api.js";
-
 import {
     ACCEPT_INVITATION_REQUEST, ACCEPT_INVITATION_SUCCESS,
     CREATE_PROJECT_REQUEST,
@@ -13,11 +12,11 @@ import {
     SEARCH_PROJECT_SUCCESS
 } from "@/Redux/Project/ActionType.js";
 
-export const fetchProjects = ({category, tags}) => async (dispatch) => {
+export const fetchProjects = ({category, tag}) => async (dispatch) => {
     dispatch({type:FETCH_PROJECTS_REQUEST});
 
     try {
-        const {data} = await api.get("/api/projects/", {params: {category, tags}});
+        const {data} = await api.get("/api/projects/all", {params: {category, tag}});
         console.log("All Projects", data)
         dispatch({type:FETCH_PROJECTS_SUCCESS, projects: data})
 
@@ -30,7 +29,7 @@ export const searchProjects = (keyword) => async (dispatch) => {
     dispatch({type:SEARCH_PROJECT_REQUEST});
 
     try {
-        const {data} = await api.get("api/projects/search/?keyword=" + keyword);
+        const {data} = await api.get("api/projects/search?keyword=" + keyword);
         console.log("Search Projects", data)
         dispatch({type:SEARCH_PROJECT_SUCCESS, projects: data})
 
@@ -56,7 +55,7 @@ export const fetchProjectById = (id) => async (dispatch) => {
     dispatch({type:FETCH_PROJECT_BY_ID_REQUEST});
 
     try {
-        const {data} = await api.get("api/projects"+ id);
+        const {data} = await api.get("api/projects/"+ id);
         console.log("Fetch Project By ID", data)
         dispatch({type:FETCH_PROJECT_BY_ID_SUCCESS, project: data})
 

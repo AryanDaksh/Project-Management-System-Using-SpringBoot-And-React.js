@@ -15,13 +15,17 @@ import {deleteProject} from "@/Redux/Project/Action.js";
 
 const ProjectCard = ({item}) => {
 
-    const handleDelete = () => {
-        dispatch(deleteProject({projectId: item.id}));
-    }
-
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
+
+    if (!item) {
+        return <div>Loading...</div>; // Show loading state if item is not available
+    }
+
+    const handleDelete = () => {
+        dispatch(deleteProject({projectId: item.id}));
+    }
 
     return (
         <Card className="p-5 w-full lg:max-w-3xl">
