@@ -4,8 +4,15 @@ import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/
 import {Input} from "@/components/ui/input.jsx";
 import {DialogClose} from "@/components/ui/dialog.jsx";
 import {Button} from "@/components/ui/button.jsx";
+import {useDispatch} from "react-redux";
+import {createIssue} from "@/Redux/Issue/Action.js";
+import {useParams} from "react-router-dom";
 
 const CreateIssueForm = () => {
+
+    const dispatch = useDispatch();
+
+    const {id} = useParams();
 
     const form = useForm({
         defaultValues: {
@@ -15,7 +22,10 @@ const CreateIssueForm = () => {
     });
 
     const onSubmit = (data) => {
-        console.log("Create Project Data",data);
+        data.projectId = id;
+
+        dispatch(createIssue({title: data.issueName, description: data.description, projectId: id}));
+        console.log("Create Issue Data",data);
     }
 
     return (

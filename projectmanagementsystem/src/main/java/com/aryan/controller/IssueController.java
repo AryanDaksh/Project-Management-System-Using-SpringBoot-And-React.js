@@ -9,10 +9,13 @@ import com.aryan.response.ApiResponse;
 import com.aryan.service.IssueService;
 import com.aryan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -38,17 +41,28 @@ public class IssueController {
         return ResponseEntity.ok(issueRepo.findByProjectId(projectId));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<IssueDTO> createIssue(@RequestBody IssueRequest issue,
-                                                @RequestHeader("Authorization") String token)
-            throws Exception {
-        User tokenUser = userService.findUserByJwt(token);
-        User user = userService.findUserById(tokenUser.getId());
+                                                @RequestHeader("Authorization") String token) {
+        try {
+            User tokenUser = userService.findUserByJwt(token);
+            if (tokenUser == null) {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid token or user not found.");
+            }
+
+            User user = userService.findUserById(tokenUser.getId());
+            if (user == null) {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User not found.");
+            }
 
             Issue createdIssue = issueService.createIssue(issue, tokenUser);
+            if (createdIssue == null) {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Issue could not be created.");
+            }
+
             IssueDTO issueDTO = new IssueDTO();
             issueDTO.setDescription(createdIssue.getDescription());
-            issueDTO.setDueDate(LocalDate.from(createdIssue.getDueDate()));
+            issueDTO.setDueDate(createdIssue.getDueDate() != null ? LocalDate.from(createdIssue.getDueDate()) : LocalDate.now());
             issueDTO.setId(createdIssue.getId());
             issueDTO.setPriority(createdIssue.getPriority());
             issueDTO.setProject(createdIssue.getProject());
@@ -57,10 +71,14 @@ public class IssueController {
             issueDTO.setTags(createdIssue.getTags());
             issueDTO.setAssignee(createdIssue.getAssignee());
 
-        return ResponseEntity.ok(issueDTO);
+            return ResponseEntity.ok(issueDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
-    @DeleteMapping
+
+    @DeleteMapping("/delete/{issueId}")
     public ResponseEntity<ApiResponse> deleteIssue(@PathVariable Long issueId,
                                                     @RequestHeader("Authorization") String token)
             throws Exception {
