@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/payment")
 public class PaymentController {
 
-    @Value("{razorpay.api.key}")
+    @Value("${razorpay.api.key}")
     private String apiKey;
 
-    @Value("{razorpay.api.secret}")
+    @Value("${razorpay.api.secret}")
     private String apiSecret;
 
     @Autowired
@@ -36,12 +36,11 @@ public class PaymentController {
             ) throws Exception {
 
         User user = userService.findUserByJwt(jwt);
-        int amount = 799*100;
+        int amount = 199*100;
         if(planType.equals(PlanType.ANNUALLY)){
             amount = amount*12;
             amount = (int) (amount*0.7);
         }
-
 
             RazorpayClient razorpayClient = new RazorpayClient(apiKey, apiSecret);
 

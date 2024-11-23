@@ -6,6 +6,8 @@ import com.aryan.model.entity.Project;
 import com.aryan.model.entity.User;
 import com.aryan.request.InvitationRequest;
 import com.aryan.response.ApiResponse;
+import com.aryan.service.ChatService;
+import com.aryan.service.Implementation.ChatServiceImpl;
 import com.aryan.service.InvitationService;
 import com.aryan.service.ProjectService;
 import com.aryan.service.UserService;
@@ -28,6 +30,10 @@ public class ProjectController {
 
     @Autowired
     private InvitationService invitationService;
+    @Autowired
+    private ChatService chatService;
+    @Autowired
+    private ChatServiceImpl chatServiceImpl;
 
     @GetMapping("/all")
     public ResponseEntity<List<Project>>getProjects(
@@ -108,11 +114,11 @@ public class ProjectController {
     }
 
     @GetMapping("/{projectId}/chat")
-    public ResponseEntity<Chat>getChatByProjectId(
+        public ResponseEntity<Chat>getChatByProjectId(
 
-            @PathVariable long projectId,
-            @RequestHeader("Authorization") String jwt
-    ) throws Exception {
+                @PathVariable long projectId,
+                @RequestHeader("Authorization") String jwt
+        ) throws Exception {
 
         User user = userService.findUserByJwt(jwt);
         Chat chat = projectService.getChatByProjectId(projectId);
@@ -123,8 +129,7 @@ public class ProjectController {
     public ResponseEntity<ApiResponse>inviteProject(
 
             @RequestBody InvitationRequest req,
-            @RequestHeader("Authorization") String jwt,
-            @RequestBody Project project
+            @RequestHeader("Authorization") String jwt
     ) throws Exception {
 
         User user = userService.findUserByJwt(jwt);
@@ -137,8 +142,7 @@ public class ProjectController {
     public ResponseEntity<Invitation>acceptInviteProject(
 
             @RequestParam String token,
-            @RequestHeader("Authorization") String jwt,
-            @RequestBody Project project
+            @RequestHeader("Authorization") String jwt
     ) throws Exception {
 
         User user = userService.findUserByJwt(jwt);

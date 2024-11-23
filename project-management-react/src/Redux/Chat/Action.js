@@ -13,6 +13,7 @@ export const sendMessage = (messageData) => {
                 type: actionTypes.SEND_MESSAGE_SUCCESS,
                 message: response.data,
             });
+            console.log("Message Sent", response.data);
         } catch (error) {
             dispatch({
                 type: actionTypes.SEND_MESSAGE_FAILURE,
@@ -37,7 +38,7 @@ export const fetchChatByProject = (projectId) => {
         } catch (error) {
             console.log("error --", error)
             dispatch({
-                type: actionTypes.SEND_MESSAGE_FAILURE,
+                type: actionTypes.FETCH_CHAT_BY_PROJECT_FAILURE,
                 error: error.message,
             });
         }

@@ -1,10 +1,10 @@
 package com.aryan.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class Chat {
     private Project project;
 
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Message> message;
 
     @ManyToMany

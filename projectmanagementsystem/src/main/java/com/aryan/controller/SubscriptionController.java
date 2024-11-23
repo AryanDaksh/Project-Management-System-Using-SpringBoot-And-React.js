@@ -20,6 +20,7 @@ public class SubscriptionController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/user")
     public ResponseEntity<Subscription> getUserSubscription(
             @RequestHeader("Authorization") String jwt) throws Exception {
 

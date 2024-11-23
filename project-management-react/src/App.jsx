@@ -12,6 +12,8 @@ import {useEffect} from "react";
 import {getUser} from "@/Redux/Auth/Action.js";
 import Auth from "@/Pages/Auth/Auth.jsx";
 import {fetchProjects} from "@/Redux/Project/Action.js";
+import UpgradeSuccess from "@/Pages/Subscription/UpgradeSuccess.jsx";
+import AcceptInvitation from "@/Pages/Projects/AcceptInvitation.jsx";
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
                             <Route path="/project/:id" element={<ProjectDetails/>}/>
                             <Route path="/project/:projectId/issue/:issueId" element={<IssueDetails/>}/>
                             <Route path="/upgrade_plan" element={<Subscription/>}/>
+                            <Route path="/upgrade_plan/success" element={<UpgradeSuccess/>}/>
+                            <Route path="/accept_invitation/" element={<AcceptInvitation/>}/>
                         </Routes>
                     </div>
                     : <Auth/>

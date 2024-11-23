@@ -9,4 +9,6 @@ public interface MessageRepo extends JpaRepository<Message, Long> {
 
     List<Message> findByChatIdOrderByCreatedAtAsc(long chatId);
 
+    List<Message> findByChatId(long chatId);
+
 }

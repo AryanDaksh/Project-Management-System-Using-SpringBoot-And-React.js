@@ -30,7 +30,8 @@ const IssueList = ({title, status}) => {
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-2">
-                            {issue.issues.map((item) => <IssueCard projectID={id} item={item} key={item.id} />)}
+                            {issue.issues.filter((issue => issue.status===status)).map((item) =>
+                                <IssueCard projectID={id} item={item} key={item.id} />)}
                         </div>
                     </CardContent>
                     <CardFooter>
@@ -44,7 +45,7 @@ const IssueList = ({title, status}) => {
                     <DialogHeader>
                         <DialogTitle>Create New Issue</DialogTitle>
                     </DialogHeader>
-                    <CreateIssueForm/>
+                    <CreateIssueForm status={status} />
                 </DialogContent>
             </Dialog>
 

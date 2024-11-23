@@ -4,8 +4,15 @@ import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/
 import {Input} from "@/components/ui/input.jsx";
 import {DialogClose} from "@/components/ui/dialog.jsx";
 import {Button} from "@/components/ui/button.jsx";
+import {useDispatch} from "react-redux";
+import {inviteToProject} from "@/Redux/Project/Action.js";
+import {useParams} from "react-router-dom";
 
 const ProjectDetails = () => {
+
+    const dispatch = useDispatch();
+
+    const {id} = useParams();
 
     const form = useForm({
         defaultValues: {
@@ -14,6 +21,7 @@ const ProjectDetails = () => {
     });
 
     const onSubmit = (data) => {
+        dispatch(inviteToProject({email: data.email, projectId: id}));
         console.log("Create Project Data",data);
     }
 

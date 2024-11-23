@@ -1,9 +1,19 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {Button} from "@/components/ui/button.jsx";
 import {CheckCircledIcon} from "@radix-ui/react-icons";
+import {useDispatch} from "react-redux";
+import {createPayment} from "@/Redux/Payment/Action.js";
 
 
 const SubscriptionCard = ({data}) => {
+
+    const dispatch = useDispatch();
+
+    const handleUpgrade = () => {
+        dispatch(createPayment({planType: data.planType, jwt:localStorage.getItem("jwt")}));
+    }
+
     return (
         <div className="rounded-xl bg-[#1b1b1b] bg-opacity-20 shadow-[#14173b]
         shadow-2xl card p-5 space-y-5 w-[18rem]" >
@@ -13,10 +23,10 @@ const SubscriptionCard = ({data}) => {
                 ₹<span className="text-xl font-semibold">{data.price}/</span>
                 <span>{data.planType}</span>
             </p>
-            {data.planType=="ANNUALLY" && <p className="text-green-500 text-sm">30% Off</p>}
+            {data.planType==="ANNUALLY" && <p className="text-green-500 text-sm">30% Off</p>}
 
 
-            <Button className="w-full">
+            <Button onClick={handleUpgrade} className="w-full">
                 {data.buttonName}
             </Button>
             <div>
