@@ -78,7 +78,7 @@ export const updateIssueStatus = ({id, status}) => {
     };
 };
 
-export const assignedUserToIssue = ({issueId, userId}) => {
+export const assignedIssueToUser = ({issueId, userId}) => {
     return async (dispatch) => {
         dispatch({type: actionTypes.ASSIGNED_ISSUE_TO_USER_REQUEST});
         try {

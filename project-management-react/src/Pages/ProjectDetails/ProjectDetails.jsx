@@ -43,9 +43,14 @@ const ProjectDetails = () => {
                                     {project.projectDetails?.description}
                                 </p>
 
+                                {/*<div className="flex">*/}
+                                {/*    <p className="w-36">Project Lead: </p>*/}
+                                {/*    <p>{project.projectDetails?.owner.fullName}</p>*/}
+                                {/*</div>*/}
+
                                 <div className="flex">
                                     <p className="w-36">Project Lead: </p>
-                                    <p>{project.projectDetails?.owner.fullName}</p>
+                                    <Badge>{project.projectDetails?.owner.fullName}</Badge>
                                 </div>
 
                                 <div className="flex">
@@ -59,19 +64,20 @@ const ProjectDetails = () => {
                                     </div>
 
                                     <Dialog>
+
                                         <DialogTrigger>
                                             <DialogClose>
-                                                <Button size="sm" variant="outline" onClick={handleProjectInvitation} className="ml-2">
+                                                <Button size="sm" variant="outline" onClick={handleProjectInvitation}
+                                                        className="ml-2">
                                                     <span>Invite</span>
                                                     <PlusIcon className="w-3 h-3"/>
                                                 </Button>
                                             </DialogClose>
                                         </DialogTrigger>
+
                                         <DialogContent>
                                             <DialogHeader>Invite User</DialogHeader>
                                             <InviteUserForm/>
-
-
                                         </DialogContent>
 
                                     </Dialog>
@@ -82,18 +88,13 @@ const ProjectDetails = () => {
                                     <p>{project.projectDetails?.category}</p>
                                 </div>
 
-                                <div className="flex">
-                                    <p className="w-36">Project Lead: </p>
-                                    <Badge >{project.projectDetails?.owner.fullName}</Badge>
-                                </div>
-
                             </div>
 
                             <section>
                                 <p className="py-5 border-b text-lg tracking-wider">Tasks</p>
                                 <div className="lg:flex md:flex gap-3 justify-between py-5">
 
-                                    <IssueList status="pending" title="To-Do List"/>
+                                <IssueList status="pending" title="To-Do List"/>
                                     <IssueList status="in_progress" title="In Progress"/>
                                     <IssueList status="done" title="Done"/>
 

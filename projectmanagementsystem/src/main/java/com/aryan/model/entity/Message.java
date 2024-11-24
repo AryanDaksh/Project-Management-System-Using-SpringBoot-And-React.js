@@ -1,5 +1,6 @@
 package com.aryan.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,13 +16,14 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String content;
 
     private LocalDateTime createdAt;
 
     @ManyToOne
+    @JsonIgnore
     private Chat chat;
 
     @ManyToOne
