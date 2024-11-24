@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {CheckCircledIcon} from "@radix-ui/react-icons";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {getUserSubscription, upgradeSubscription} from "@/Redux/Subscription/Action.js";
+import {upgradeSubscription} from "@/Redux/Subscription/Action.js";
 
 const UpgradeSuccess = () => {
 
@@ -16,13 +16,10 @@ const UpgradeSuccess = () => {
 
     const queryParams = new URLSearchParams(location.search);
 
-    const paymentId = queryParams.get("payment_id");
-
     const planType = queryParams.get("planType");
 
     useEffect(() => {
         dispatch(upgradeSubscription({planType}));
-        dispatch(getUserSubscription());
     }, [dispatch, planType]);
 
     return (

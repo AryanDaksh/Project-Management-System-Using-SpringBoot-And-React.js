@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import SubscriptionCard from "@/Pages/Subscription/SubscriptionCard.jsx";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getUserSubscription, upgradeSubscription} from "@/Redux/Subscription/Action.js";
 
 
 const paidPlan = [
@@ -37,7 +38,13 @@ const freePlan = [
 
 const Subscription = () => {
 
+    const dispatch = useDispatch();
+
     const {subscription} = useSelector(Store=>Store);
+
+    useEffect(() => {
+        dispatch(getUserSubscription());
+    }, [dispatch]);
 
     return (
         <div className="p-10">

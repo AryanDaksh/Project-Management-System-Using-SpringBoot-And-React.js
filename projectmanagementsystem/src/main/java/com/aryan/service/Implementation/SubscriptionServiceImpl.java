@@ -3,8 +3,7 @@ package com.aryan.service.Implementation;
 import com.aryan.model.entity.PlanType;
 import com.aryan.model.entity.Subscription;
 import com.aryan.model.entity.User;
-import com.aryan.repository.SubscriptioRepo;
-import com.aryan.repository.UserRepo;
+import com.aryan.repository.SubscriptionRepo;
 import com.aryan.service.SubscriptionService;
 import com.aryan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.time.LocalDate;
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Autowired
-    private SubscriptioRepo subscriptioRepo;
+    private SubscriptionRepo subscriptioRepo;
 
     @Autowired
     private UserService userService;
@@ -36,12 +35,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public Subscription getUserSubscription(Long userId) throws Exception {
         Subscription subscription = subscriptioRepo.findByUserId(userId);
-        if (isValid(subscription)) {
-            subscription.setPlanType(PlanType.FREE);
-            subscription.setSubscriptionEndDate(LocalDate.now().plusMonths(12));
-            subscription.setSubscriptionStartDate(LocalDate.now());
-        }
-
         return subscriptioRepo.save(subscription);
     }
 
