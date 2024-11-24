@@ -23,7 +23,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchProjects({}))
         dispatch(getUser())
-    },[auth.jwt])
+    },[auth.jwt, dispatch])
 
     console.log(auth);
 

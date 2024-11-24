@@ -21,6 +21,7 @@ export const subscriptionReducer = (state = initialState, action) => {
         case types.GET_USER_SUBSCRIPTION_SUCCESS:
             return {
                 ...state,
+                userSubscription: action.payload,
                 loading: false,
                 error: null,
             };

@@ -27,7 +27,7 @@ const IssueDetails = () => {
     useEffect(() => {
         dispatch(fetchIssueById(issueId));
         dispatch(fetchComments(issueId));
-    },[issueId])
+    },[dispatch, issueId])
 
     return (
         <div className="px-20 py-8 text-gray-400">

@@ -19,7 +19,7 @@ const IssueList = ({title, status}) => {
 
     useEffect(() => {
         dispatch(fetchIssues(id))
-    },[id]);
+    },[dispatch, id]);
 
     return (
         <div>

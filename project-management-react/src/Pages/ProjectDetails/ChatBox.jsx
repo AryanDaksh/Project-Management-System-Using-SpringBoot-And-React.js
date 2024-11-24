@@ -20,11 +20,11 @@ const ChatBox = () => {
 
     useEffect(() => {
         dispatch(fetchChatByProject(id))
-    }, [])
+    }, [dispatch, id])
 
     useEffect(() => {
-        dispatch(fetchChatMessages(chat.chat?.id))
-    }, [])
+        dispatch(fetchChatMessages(id))
+    }, [dispatch, id])
 
     const handleSendMessage=()=>{
         dispatch(sendMessage({

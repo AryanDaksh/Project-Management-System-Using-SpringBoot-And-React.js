@@ -59,7 +59,7 @@ const Subscription = () => {
                         planName:"Monthly Paid Plan",
                         features:paidPlan,
                         planType:"MONTHLY",
-                        price:199,
+                        price:1,
                         buttonName: subscription.userSubscription?.planType === "MONTHLY" ? "Current Plan" : "Get Started"
                     }}
                 />
@@ -69,7 +69,7 @@ const Subscription = () => {
                         planName:"Annual Paid Plan",
                         features:annualPlan,
                         planType:"ANNUALLY",
-                        price:1671,
+                        price:8.4,
                         buttonName: subscription.userSubscription?.planType === "ANNUALLY" ? "Current Plan" : "Get Started"
                     }}
                 />
