@@ -27,4 +27,5 @@ public class Subscription {
     private User user;
 
     private boolean isValid;
+
 }

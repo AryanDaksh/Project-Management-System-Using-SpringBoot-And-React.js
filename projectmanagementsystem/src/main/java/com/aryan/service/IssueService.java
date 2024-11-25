@@ -20,4 +20,5 @@ public interface IssueService {
     Issue addUserToIssue(long issueId, Long userid) throws Exception;
 
     Issue updateStatus(Long issueId, String status) throws Exception;
+
 }

@@ -4,11 +4,8 @@ import com.aryan.model.entity.PlanType;
 import com.aryan.model.entity.User;
 import com.aryan.response.PaymentLinkResponse;
 import com.aryan.service.UserService;
-import com.razorpay.Payment;
 import com.razorpay.PaymentLink;
 import com.razorpay.RazorpayClient;
-import com.razorpay.RazorpayException;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,8 +67,6 @@ public class PaymentController {
             res.setPayment_link_id(paymentLinkId);
 
             return new ResponseEntity<>(res, HttpStatus.CREATED);
-
-
     }
 
 }

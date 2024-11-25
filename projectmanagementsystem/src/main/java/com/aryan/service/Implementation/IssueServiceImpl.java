@@ -10,7 +10,6 @@ import com.aryan.service.ProjectService;
 import com.aryan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -78,4 +77,5 @@ public class IssueServiceImpl implements IssueService {
         issue.setStatus(status); // update the status
         return issueRepo.save(issue); // save and return the updated issue
     }
+
 }

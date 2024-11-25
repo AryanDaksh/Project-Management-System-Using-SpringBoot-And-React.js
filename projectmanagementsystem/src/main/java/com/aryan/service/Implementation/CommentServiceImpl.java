@@ -83,4 +83,5 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> findByIssueId(Long issueId) {
         return commentRepo.findByIssueId(issueId);
     }
+
 }

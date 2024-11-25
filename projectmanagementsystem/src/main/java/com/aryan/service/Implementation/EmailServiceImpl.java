@@ -35,4 +35,5 @@ public class EmailServiceImpl implements EmailService {
             throw new MailSendException("Failed to send Email!");
         }
     }
+
 }

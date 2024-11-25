@@ -7,7 +7,6 @@ import com.aryan.service.InvitationService;
 import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service
@@ -55,4 +54,5 @@ public class InvitationServiceImpl implements InvitationService {
         Invitation invitation = invitationRepo.findByToken(token);
         invitationRepo.delete(invitation);
     }
+
 }

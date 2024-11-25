@@ -41,7 +41,13 @@ public class AppConfig {
                 config.setAllowedOrigins(Arrays.asList(
                         "http://localhost:3000",
                         "http://localhost:5173",
-                        "http://localhost:4200"
+                        "http://localhost:4200",
+                        "http://192.168.27.98:3000/",
+                        "http://192.168.27.98:5173/",
+                        "http://192.168.27.98:4200/",
+                        "http://192.168.167.252:3000/",
+                        "http://192.168.167.252:5173/",
+                        "http://192.168.167.252:4200/"
                 ));
 
                 config.setAllowedMethods(Collections.singletonList("*"));
@@ -53,9 +59,11 @@ public class AppConfig {
             }
         };
     }
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
 
     }
+
 }
