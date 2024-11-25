@@ -10,4 +10,5 @@ public class MessageRequest {
     private String content;
 
     private Long projectId;
+
 }

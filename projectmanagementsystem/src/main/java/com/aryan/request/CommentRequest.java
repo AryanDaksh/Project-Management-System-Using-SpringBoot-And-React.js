@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 public class CommentRequest {
 
     private Long issueId;
+
     private String content;
+
 }

@@ -9,7 +9,6 @@ import com.aryan.service.MessageService;
 import com.aryan.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -51,4 +50,5 @@ public class MessageServiceImpl implements MessageService {
 
         return messageRepo.findByChatIdOrderByCreatedAtAsc(chat.getId());
     }
+
 }

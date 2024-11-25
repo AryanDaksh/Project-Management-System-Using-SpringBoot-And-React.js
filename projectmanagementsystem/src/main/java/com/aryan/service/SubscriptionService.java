@@ -14,6 +14,4 @@ public interface SubscriptionService {
 
     boolean isValid(Subscription subscription);
 
-
-
 }

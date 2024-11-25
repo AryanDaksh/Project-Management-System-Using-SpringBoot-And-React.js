@@ -10,10 +10,6 @@ import java.util.Date;
 public class JwtProvider {
 
     static SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
-    //Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwt).getBody();
-
-    //String email= String.valueOf(claims.get("email"));
-    //String authorities= String.valueOf(claims.get("authorities"));
 
     public static String generateToken(Authentication auth) {
 
@@ -32,4 +28,5 @@ public class JwtProvider {
 
         return String.valueOf(claims.get("email"));
     }
+
 }

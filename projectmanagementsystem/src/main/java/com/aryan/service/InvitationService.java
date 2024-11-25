@@ -12,4 +12,5 @@ public interface InvitationService {
     public String getTokenByUserMail(String userEmail);
 
     void deleteToken(String token);
+
 }

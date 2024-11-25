@@ -11,7 +11,6 @@ import {PersonIcon} from "@radix-ui/react-icons";
 import {Button} from "@/components/ui/button.jsx";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {Store} from "@/Redux/Store.js";
 import {logout} from "@/Redux/Auth/Action.js";
 
 const Navbar = () => {
@@ -27,7 +26,7 @@ const Navbar = () => {
     return (
         <div className="border-b py-4 px-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
-                <p onClick={()=> navigate("/")} className="cursor-pointer">Promana</p>
+                <p onClick={()=> navigate("/")} className="cursor-pointer">AryanDaksh</p>
 
                 <Dialog>
 
