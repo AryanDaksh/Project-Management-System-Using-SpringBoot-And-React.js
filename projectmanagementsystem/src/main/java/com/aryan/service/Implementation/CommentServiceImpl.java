@@ -29,6 +29,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment createComment(Long issueId, Long userId, String content) throws Exception {
 
+        if (content == null || content.trim().isEmpty()) {
+            throw new IllegalArgumentException("Content cannot be null or empty");
+        }
+
         Optional<Issue> issueOptional = issueRepo.findById(issueId);
         Optional<User> userOptional = userRepo.findById(userId);
 

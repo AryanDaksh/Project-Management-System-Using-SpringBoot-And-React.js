@@ -14,6 +14,9 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public Chat createChat(Chat chat) {
+        if (chat == null) {
+            throw new IllegalArgumentException("Chat object cannot be null");
+        }
         return chatRepo.save(chat);
     }
 
