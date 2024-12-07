@@ -21,6 +21,13 @@ public class InvitationServiceImpl implements InvitationService {
     @Override
     public void sendInvitation(String email, Long projectId) throws MessagingException {
 
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be null or empty");
+        }
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+
         String invitationToken = UUID.randomUUID().toString();
 
         Invitation invitation = new Invitation();
@@ -46,12 +53,18 @@ public class InvitationServiceImpl implements InvitationService {
     @Override
     public String getTokenByUserMail(String userEmail) {
         Invitation invitation = invitationRepo.findByEmail(userEmail);
+        if (invitation == null) {
+            throw new IllegalArgumentException("No invitation found for the provided email: " + userEmail);
+        }
         return invitation.getToken();
     }
 
     @Override
     public void deleteToken(String token) {
         Invitation invitation = invitationRepo.findByToken(token);
+        if (invitation == null) {
+            throw new IllegalArgumentException("No invitation found for the provided token: " + token);
+        }
         invitationRepo.delete(invitation);
     }
 

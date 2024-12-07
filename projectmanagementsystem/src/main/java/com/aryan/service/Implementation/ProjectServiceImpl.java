@@ -27,6 +27,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project createProject(Project project, User user) throws Exception {
+
+        if (project == null) {
+            throw new IllegalArgumentException("Project cannot be null");
+        }
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+
         Project createdProject = new Project();
 
         createdProject.setOwner(user);
@@ -48,6 +56,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> getProjectByTeam(User user, String category, String tag) throws Exception {
+
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+
         List<Project> projects = projectRepo.findByTeamContainingOrOwner(user, user);
 
         if (category != null) {
@@ -64,6 +77,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project getProjectById(Long projectId) throws Exception {
+
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+
         Optional<Project> project = projectRepo.findById(projectId);
         if(project.isEmpty()){
             throw new Exception("Project Not Found!");
@@ -73,6 +91,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project deleteProject(Long projectId, Long userId) throws Exception {
+
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+        if (userId == null || userId <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
         getProjectById(projectId);
         userService.findUserById(userId);
         projectRepo.deleteById(projectId);
@@ -82,6 +108,14 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Project updateProject(Project updatedProject, Long id) throws Exception {
+
+        if (updatedProject == null) {
+            throw new IllegalArgumentException("Updated project cannot be null");
+        }
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+
         Project project = getProjectById(id);
 
         project.setProjectName(updatedProject.getProjectName());
@@ -93,6 +127,13 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void addUserToProject(Long projectId, Long userId) throws Exception {
+
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+        if (userId == null || userId <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
 
         Project project = getProjectById(projectId);
         User user = userService.findUserById(userId);
@@ -113,6 +154,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void removeUserFromProject(Long projectId, Long userId) throws Exception {
 
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+        if (userId == null || userId <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
         Project project = getProjectById(projectId);
         User user = userService.findUserById(userId);
         if(project.getTeam().contains(user)){
@@ -124,6 +172,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public Chat getChatByProjectId(Long projectId) throws Exception {
+
+        if (projectId == null || projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
+
         Project project = getProjectById(projectId);
 
         return project.getChat();
@@ -131,6 +184,13 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> searchProject(String keyword, User user) throws Exception {
+
+        if (keyword == null || keyword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Keyword cannot be null or empty");
+        }
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
 
         return projectRepo.findByProjectNameContainingAndTeamContains(keyword, user);
     }

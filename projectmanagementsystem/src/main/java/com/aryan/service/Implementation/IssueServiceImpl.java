@@ -36,12 +36,27 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public List<Issue> getIssuesByProject(long projectId) throws Exception {
+        if (projectId <= 0) {
+            throw new IllegalArgumentException("Invalid project ID");
+        }
         return issueRepo.findByProjectId(projectId);
     }
 
     @Override
     public Issue createIssue(IssueRequest issueRequest, User user) throws Exception {
+
+        if (issueRequest == null) {
+            throw new IllegalArgumentException("Issue request cannot be null");
+        }
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+
         Project project = projectService.getProjectById(issueRequest.getProjectId());
+
+        if (project == null) {
+            throw new IllegalArgumentException("Project not found for ID: " + issueRequest.getProjectId());
+        }
 
         Issue issue = new Issue();
         issue.setTitle(issueRequest.getTitle());
@@ -57,14 +72,33 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public void deleteIssue(long issueId, Long userid) throws Exception {
-        getIssueById(issueId);
 
+        if (issueId <= 0) {
+            throw new IllegalArgumentException("Invalid issue ID");
+        }
+        if (userid == null || userid <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
+        getIssueById(issueId);
         issueRepo.deleteById(issueId);
     }
 
     @Override
     public Issue addUserToIssue(long issueId, Long userid) throws Exception {
+
+        if (issueId <= 0) {
+            throw new IllegalArgumentException("Invalid issue ID");
+        }
+        if (userid == null || userid <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
         User user = userService.findUserById(userid);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found for ID: " + userid);
+        }
+
         Issue issue = getIssueById(issueId);
         issue.setAssignee(user);
 
@@ -73,9 +107,17 @@ public class IssueServiceImpl implements IssueService {
 
     @Override
     public Issue updateStatus(Long issueId, String status) throws Exception {
-        Issue issue = getIssueById(issueId); // reuse existing method to fetch the issue
-        issue.setStatus(status); // update the status
-        return issueRepo.save(issue); // save and return the updated issue
+
+        if (issueId == null || issueId <= 0) {
+            throw new IllegalArgumentException("Invalid issue ID");
+        }
+        if (status == null || status.trim().isEmpty()) {
+            throw new IllegalArgumentException("Status cannot be null or empty");
+        }
+
+        Issue issue = getIssueById(issueId);
+        issue.setStatus(status);
+        return issueRepo.save(issue);
     }
 
 }

@@ -14,13 +14,18 @@ import java.time.LocalDate;
 public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Autowired
-    private SubscriptionRepo subscriptioRepo;
+    private SubscriptionRepo subscriptionRepo;
 
     @Autowired
     private UserService userService;
 
     @Override
     public Subscription createSubscription(User user) throws Exception {
+
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+
         Subscription subscription = new Subscription();
         subscription.setUser(user);
         subscription.setSubscriptionStartDate(LocalDate.now());
@@ -28,19 +33,39 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         subscription.setValid(true);
         subscription.setPlanType(PlanType.FREE);
 
-        return subscriptioRepo.save(subscription);
+        return subscriptionRepo.save(subscription);
     }
 
     @Override
     public Subscription getUserSubscription(Long userId) throws Exception {
-        Subscription subscription = subscriptioRepo.findByUserId(userId);
-        return subscriptioRepo.save(subscription);
+
+        if (userId == null || userId <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+
+        Subscription subscription = subscriptionRepo.findByUserId(userId);
+        if (subscription == null) {
+            throw new Exception("Subscription not found for user ID: " + userId);
+        }
+
+        return subscriptionRepo.save(subscription);
     }
 
     @Override
     public Subscription updateSubscription(Long userId, PlanType planType) throws Exception {
 
-        Subscription subscription = subscriptioRepo.findByUserId(userId);
+        if (userId == null || userId <= 0) {
+            throw new IllegalArgumentException("Invalid user ID");
+        }
+        if (planType == null) {
+            throw new IllegalArgumentException("Plan type cannot be null");
+        }
+
+        Subscription subscription = subscriptionRepo.findByUserId(userId);
+        if (subscription == null) {
+            throw new Exception("Subscription not found for user ID: " + userId);
+        }
+
         subscription.setPlanType(planType);
         subscription.setSubscriptionStartDate(LocalDate.now());
         if (planType == PlanType.MONTHLY) {
@@ -49,14 +74,18 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             subscription.setSubscriptionEndDate(LocalDate.now().plusMonths(12));
         }
 
-        return subscriptioRepo.save(subscription);
+        return subscriptionRepo.save(subscription);
     }
 
     @Override
     public boolean isValid(Subscription subscription) {
+        if (subscription == null) {
+            throw new IllegalArgumentException("Subscription cannot be null");
+        }
         if (subscription.getPlanType() == PlanType.FREE) {
             return true;
         }
+
         LocalDate endDate = subscription.getSubscriptionEndDate();
         LocalDate currentDate = LocalDate.now();
 

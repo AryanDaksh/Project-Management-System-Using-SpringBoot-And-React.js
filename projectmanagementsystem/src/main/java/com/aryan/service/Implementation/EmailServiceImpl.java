@@ -18,6 +18,14 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendEmailWithToken(String userEmail, String link) throws MessagingException {
+
+        if (userEmail == null || userEmail.trim().isEmpty()) {
+            throw new IllegalArgumentException("User email cannot be null or empty");
+        }
+        if (link == null || link.trim().isEmpty()) {
+            throw new IllegalArgumentException("Link cannot be null or empty");
+        }
+
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
