@@ -1,9 +1,8 @@
 package com.aryan.service.Implementation;
 
-import com.aryan.model.entity.Chat;
-import com.aryan.model.entity.Project;
-import com.aryan.model.entity.User;
+import com.aryan.model.entity.*;
 import com.aryan.repository.ProjectRepo;
+import com.aryan.repository.SubscriptionRepo;
 import com.aryan.service.ChatService;
 import com.aryan.service.ProjectService;
 import com.aryan.service.UserService;
@@ -20,6 +19,9 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepo projectRepo;
 
     @Autowired
+    private SubscriptionRepo subscriptionRepo;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -34,6 +36,14 @@ public class ProjectServiceImpl implements ProjectService {
         if (user == null) {
             throw new IllegalArgumentException("User cannot be null");
         }
+
+//        Subscription subscription = subscriptionRepo.findByUserId(user.getId());
+//        if (subscription != null && subscription.getPlanType() == PlanType.FREE) {
+//            List<Project> userProjects = projectRepo.findByTeamContainingOrOwner(user, user);
+//            if (userProjects.size() >= 3) {
+//                throw new Exception("Free users can only create up to 3 projects");
+//            }
+//        }
 
         Project createdProject = new Project();
 
@@ -120,6 +130,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         project.setProjectName(updatedProject.getProjectName());
         project.setDescription(updatedProject.getDescription());
+        project.setCategory(updatedProject.getCategory());
         project.setTags(updatedProject.getTags());
 
         return projectRepo.save(project);
