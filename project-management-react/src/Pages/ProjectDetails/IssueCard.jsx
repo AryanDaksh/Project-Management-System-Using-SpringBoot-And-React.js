@@ -12,7 +12,7 @@ import {Avatar, AvatarFallback} from "@/components/ui/avatar.jsx";
 import UserList from "@/Pages/ProjectDetails/UserList.jsx";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteIssue} from "@/Redux/Issue/Action.js";
+import {deleteIssue, updateIssueStatus} from "@/Redux/Issue/Action.js";
 
 const IssueCard = ({item, projectID}) => {
 
@@ -23,6 +23,10 @@ const IssueCard = ({item, projectID}) => {
     const handleIssueDelete = () => {
         dispatch(deleteIssue(item.id))
     }
+
+    const handleStatusUpdate = (status) => {
+        dispatch(updateIssueStatus({id: item.id, status}));
+    };
 
     return (
         <Card className="rounded-md py-1 pb-2">
@@ -41,8 +45,8 @@ const IssueCard = ({item, projectID}) => {
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent>
-                            <DropdownMenuItem>In Progress</DropdownMenuItem>
-                            <DropdownMenuItem>Done</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleStatusUpdate('in_progress')}>In Progress</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleStatusUpdate('done')}>Done</DropdownMenuItem>
                             <DropdownMenuItem>Edit</DropdownMenuItem>
                             <DropdownMenuItem onClick={handleIssueDelete}>Delete</DropdownMenuItem>
                         </DropdownMenuContent>

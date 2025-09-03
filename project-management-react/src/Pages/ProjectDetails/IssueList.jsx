@@ -30,8 +30,11 @@ const IssueList = ({title, status}) => {
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-2">
-                            {issue.issues.filter((issue => issue.status===status)).map((item) =>
-                                <IssueCard projectID={id} item={item} key={item.id} />)}
+                            {issue.issues
+                                .filter(item => item.status.toLowerCase() === status.toLowerCase())
+                                .map(item => (
+                                    <IssueCard projectID={id} item={item} key={item.id} />
+                                ))}
                         </div>
                     </CardContent>
                     <CardFooter>

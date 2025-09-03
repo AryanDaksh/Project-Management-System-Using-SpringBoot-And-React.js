@@ -9,7 +9,7 @@ import {
     FETCH_PROJECTS_REQUEST,
     FETCH_PROJECTS_SUCCESS, INVITE_TO_PROJECT_REQUEST, INVITE_TO_PROJECT_SUCCESS,
     SEARCH_PROJECT_REQUEST,
-    SEARCH_PROJECT_SUCCESS
+    SEARCH_PROJECT_SUCCESS, UPDATE_PROJECT_REQUEST, UPDATE_PROJECT_SUCCESS
 } from "@/Redux/Project/ActionType.js";
 
 export const fetchProjects = ({category, tag}) => async (dispatch) => {
@@ -104,5 +104,23 @@ export const acceptInvitation = ({token, navigate}) => async (dispatch) => {
 
     } catch (error) {
         console.log("error", error)
+    }
+}
+
+export const updateProject = (project, {projectId}) => async (dispatch) => {
+    dispatch({type:UPDATE_PROJECT_REQUEST});
+
+    try {
+        const { data } = await api.patch("api/projects/"+ projectId, project, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
+            }
+        });
+        console.log("Update Project", data);
+        dispatch({type:UPDATE_PROJECT_SUCCESS, project: data});
+
+    } catch (error) {
+        console.log("error", error)
+        dispatch({ type: 'UPDATE_PROJECT_FAILURE', error });
     }
 }

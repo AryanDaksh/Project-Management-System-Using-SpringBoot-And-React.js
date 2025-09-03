@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from "@/components/ui/card.jsx";
-import { DotFilledIcon, DotsVerticalIcon } from "@radix-ui/react-icons";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,6 +11,9 @@ import {Badge} from "@/components/ui/badge.jsx";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {deleteProject} from "@/Redux/Project/Action.js";
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog.jsx";
+import UpdateProjectForm from "@/Pages/Projects/UpdateProjectForm.jsx";
+import {DotFilledIcon, DotsVerticalIcon} from "@radix-ui/react-icons";
 
 const ProjectCard = ({item}) => {
 
@@ -19,13 +21,19 @@ const ProjectCard = ({item}) => {
 
     const navigate = useNavigate();
 
+    const [isUpdateFormOpen, setIsUpdateFormOpen] = React.useState(false);
+
     if (!item) {
-        return <div>Loading...</div>; // Show loading state if item is not available
+        return <div>Loading...</div>;
     }
 
     const handleDelete = () => {
         dispatch(deleteProject({projectId: item.id}));
     }
+
+    const handleUpdate = () => {
+        setIsUpdateFormOpen(true);
+    };
 
     return (
         <Card className="p-5 w-full lg:max-w-3xl">
@@ -51,7 +59,7 @@ const ProjectCard = ({item}) => {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem>Update</DropdownMenuItem>
+                            <DropdownMenuItem onClick={handleUpdate}>Update</DropdownMenuItem>
                             <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -68,6 +76,16 @@ const ProjectCard = ({item}) => {
                     {item.tags.map((tag)=><Badge key={item} variant="outline">{tag}</Badge>)}
                 </div>
             </div>
+
+            <Dialog open={isUpdateFormOpen} onOpenChange={setIsUpdateFormOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Update Project</DialogTitle>
+                    </DialogHeader>
+                    <UpdateProjectForm projectId={item.id} />
+                </DialogContent>
+            </Dialog>
+
         </Card>
     );
 }
