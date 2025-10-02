@@ -11,7 +11,7 @@ import {
     FETCH_PROJECTS_SUCCESS, INVITE_TO_PROJECT_FAILURE,
     INVITE_TO_PROJECT_REQUEST,
     SEARCH_PROJECT_FAILURE,
-    SEARCH_PROJECT_SUCCESS,
+    SEARCH_PROJECT_SUCCESS, UPDATE_PROJECT_FAILURE, UPDATE_PROJECT_REQUEST, UPDATE_PROJECT_SUCCESS,
 } from "@/Redux/Project/ActionType.js";
 
 const initialState = {
@@ -30,6 +30,7 @@ export const projectReducer = (state = initialState, action) => {
         case FETCH_PROJECT_BY_ID_REQUEST:
         case ACCEPT_INVITATION_REQUEST:
         case INVITE_TO_PROJECT_REQUEST:
+        case UPDATE_PROJECT_REQUEST:
             return{
                 ...state,
                 loading: true,
@@ -69,6 +70,7 @@ export const projectReducer = (state = initialState, action) => {
             }
 
         case DELETE_PROJECT_SUCCESS:
+        case UPDATE_PROJECT_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -85,6 +87,7 @@ export const projectReducer = (state = initialState, action) => {
         case ACCEPT_INVITATION_FAILURE:
         case INVITE_TO_PROJECT_FAILURE:
         case SEARCH_PROJECT_FAILURE:
+        case UPDATE_PROJECT_FAILURE:
             return {
                 ...state,
                 loading: false,

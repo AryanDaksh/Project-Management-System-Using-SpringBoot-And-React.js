@@ -14,6 +14,7 @@ export const sendMessage = (messageData) => {
                 message: response.data,
             });
             console.log("Message Sent", response.data);
+            window.location.reload();
         } catch (error) {
             dispatch({
                 type: actionTypes.SEND_MESSAGE_FAILURE,
